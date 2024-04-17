@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -283,25 +282,12 @@ public class Inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_deleteallActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        int selectedRow = tbl_products.getSelectedRow(); // Obtener la fila seleccionada
-    
-        if (selectedRow != -1) { // Verificar si se ha seleccionado una fila
-            if (!txt_name.getText().isEmpty()) {
-                // Modificar el nombre en la fila seleccionada
-                tbl_products.getModel().setValueAt(txt_name.getText(), selectedRow, 1);
-                empty();
-            } else if (!txt_price.getText().isEmpty()) {
-                // Modificar el precio en la fila seleccionada
-                tbl_products.getModel().setValueAt(txt_price.getText(), selectedRow, 2);
-                empty();
-            } else if (!txt_stock.getText().isEmpty()) {
-                // Modificar el stock en la fila seleccionada
-                tbl_products.getModel().setValueAt(txt_stock.getText(), selectedRow, 3);
-                empty();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Select a row to edit.",
-                    "No row selected", JOptionPane.WARNING_MESSAGE);
+        if (products.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There are no products to edit.",
+                "Empty inventory", JOptionPane.ERROR_MESSAGE);
+        } else {EditInventory edit = new EditInventory(this.products);
+        edit.setVisible(true);
+        this.setVisible(false);
         }
     }//GEN-LAST:event_btn_editActionPerformed
 
