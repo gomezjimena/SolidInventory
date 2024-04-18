@@ -318,12 +318,17 @@ public final class Inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_deleteallActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        if (productsl.isEmpty()) {
+        if (productsl.isEmpty() && this.products == null) {
             JOptionPane.showMessageDialog(this, "There are no products to edit.",
                 "Empty inventory", JOptionPane.ERROR_MESSAGE);
-        } else {EditInventory edit = new EditInventory(this.productsl);
+        } else if (this.products != null){
+            EditInventory edit = new EditInventory(this.products);
             edit.setVisible(true);
-            this.setVisible(true);
+            this.setVisible(false);
+        }
+        else {EditInventory edit = new EditInventory(this.productsl);
+            edit.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btn_editActionPerformed
 

@@ -55,6 +55,15 @@ public class ModelEditTable extends AbstractTableModel {
         return column != 0;
     }
     
+    public Product getProductAtRow(int rowIndex) {
+        // Verificar si el índice de fila está dentro de los límites de la tabla
+        if (rowIndex >= 0 && rowIndex < products.size()) {
+            return products.get(rowIndex); // Devolver el producto en la fila especificada
+        } else {
+            return null; // Si el índice está fuera de los límites, devolver null
+        }
+    }
+    
     @Override
     public String getColumnName(int column) {
         return this.columnNames[column];
