@@ -52,7 +52,7 @@ public class ModelEditTable extends AbstractTableModel {
     
     @Override
     public boolean isCellEditable(int row, int column) {
-        return true;
+        return column != 0;
     }
     
     @Override

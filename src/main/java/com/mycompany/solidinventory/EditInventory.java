@@ -26,10 +26,6 @@ public final class EditInventory extends javax.swing.JFrame {
         this.currentInventory = currentInventory;
     }
     
-    
-    /**
-     * Creates new form EditInventory
-     */
     public EditInventory() {
         initComponents();
         this.setCurrentInventory(null);
@@ -85,6 +81,11 @@ public final class EditInventory extends javax.swing.JFrame {
 
         btn_save.setText("Save changes");
         btn_save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveActionPerformed(evt);
+            }
+        });
 
         tbl_edit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,10 +133,14 @@ public final class EditInventory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_discardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_discardActionPerformed
-        Inventory win = new Inventory();
-        win.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_discardActionPerformed
+
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        Inventory edit = new Inventory(this.editInventoryList);
+        edit.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_saveActionPerformed
 
     /**
      * @param args the command line arguments

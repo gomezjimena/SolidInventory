@@ -8,4 +8,5 @@ com\mycompany\solidinventory\Inventory.class
 com\mycompany\solidinventory\ModelProductsTable.class
 com\mycompany\solidinventory\Inventory$4.class
 com\mycompany\solidinventory\ModelEditTable.class
+com\mycompany\solidinventory\EditInventory$2.class
 com\mycompany\solidinventory\Inventory$2.class

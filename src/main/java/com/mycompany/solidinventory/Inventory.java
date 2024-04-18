@@ -14,9 +14,19 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Lenovo
  */
-public class Inventory extends javax.swing.JFrame {
-    List<Product> products = new ArrayList<>();
+public final class Inventory extends javax.swing.JFrame {
+    List<Product> products ;
+    List<Product> productsl = new ArrayList<>();
+    List<Product> products2;
     TableRowSorter<ModelProductsTable> tableRowSorter = new TableRowSorter<>();
+
+    public List<Product> getProducts2() {
+        return products2;
+    }
+
+    public void setProducts2(List<Product> products2) {
+        this.products2 = products2;
+    }
     
     /**
      * Creates new form Inventory
@@ -26,15 +36,41 @@ public class Inventory extends javax.swing.JFrame {
         initObjects();
         empty();
         numericalEmpty();
+        this.setProducts2(null);
+        this.setLocationRelativeTo(null);
+    }
+    
+    public Inventory(List<Product> editInventory) {
+        initComponents();
+        this.setProducts2(editInventory);
+        initObjects();
+        empty();
+        numericalEmpty();
         this.setLocationRelativeTo(null);
     }
 
     private void initObjects() {
+        if(this.getProducts2() == null){
+            ModelProductsTable model = new ModelProductsTable(this.productsl);
+            tableRowSorter = new TableRowSorter<>(model);
+
+            tbl_products.setRowSorter(tableRowSorter);
+            tbl_products.setModel(model);
+        }else{
+            products = new ArrayList<>();
+        
+            for (int i = 0; i < this.getProducts2().size(); i++) { 
+                Product editInformation = new Product(i + 1, this.getProducts2().get(i).getName(), 
+                     this.getProducts2().get(i).getPrice(), this.getProducts2().get(i).getStock());            
+                products.add(editInformation);
+            }
+        
         ModelProductsTable model = new ModelProductsTable(this.products);
         tableRowSorter = new TableRowSorter<>(model);
         
-        tbl_products.setRowSorter(tableRowSorter);
         tbl_products.setModel(model);
+        tbl_products.setRowSorter(tableRowSorter);
+        }
     }
     
     private void empty(){
@@ -282,12 +318,12 @@ public class Inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_deleteallActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        if (products.isEmpty()) {
+        if (productsl.isEmpty()) {
             JOptionPane.showMessageDialog(this, "There are no products to edit.",
                 "Empty inventory", JOptionPane.ERROR_MESSAGE);
-        } else {EditInventory edit = new EditInventory(this.products);
-        edit.setVisible(true);
-        this.setVisible(false);
+        } else {EditInventory edit = new EditInventory(this.productsl);
+            edit.setVisible(true);
+            this.setVisible(true);
         }
     }//GEN-LAST:event_btn_editActionPerformed
 
